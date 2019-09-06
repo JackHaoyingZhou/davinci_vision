@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/aimlab3/CLionProjects/cv_stream/main.cpp
+iostream
+-
+fstream
+-
+string
+-
+opencv2/opencv.hpp
+/home/aimlab3/CLionProjects/cv_stream/opencv2/opencv.hpp
+
