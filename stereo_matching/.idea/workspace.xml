@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
+    <generated>
+      <config projectName="stereo_matching" targetName="stereo_matching" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e611533-3dcb-4a34-aacd-0496f1913916" name="Default Changelist" comment="" />
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="494922738">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="34" />
+          <entry key="project.open.time.0" value="21" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.2" value="10" />
+          <entry key="project.open.time.3" value="8" />
+          <entry key="project.open.time.4" value="6" />
+          <entry key="project.open.time.5" value="8" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.opened" value="56" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cpp" value="2888" />
+          <entry key="txt" value="212" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CMakeLists.txt" value="212" />
+          <entry key="ObjectiveC" value="2888" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open" />
+      <usages-collector id="statistics.file.types.open" />
+      <usages-collector id="statistics.cidr.testingFrameworks.usages" />
+      <usages-collector id="statistics.vcs.git.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3672">
+              <caret line="348" column="15" selection-start-line="348" selection-start-column="15" selection-end-line="348" selection-end-column="15" />
+              <folding>
+                <element signature="e#307#345#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>block size</find>
+      <find>point_cloud</find>
+      <find>mat</find>
+      <find>reprojectImageTo3D</find>
+      <find>disp</find>
+      <find>img1</find>
+      <find>filestorage</find>
+      <find>MAT</find>
+      <find>alg</find>
+      <find>block</find>
+      <find>SADWindowSize</find>
+      <find>blocksize</find>
+      <find>max_disparity</find>
+      <find>max</find>
+      <find>xyz</find>
+      <find>cloud</find>
+      <find>coords</find>
+      <find>point_cloud_filename</find>
+      <find>point</find>
+      <find>sadwindow</find>
+      <find>pcd</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="2066" />
+    <option name="y" value="109" />
+    <option name="width" value="1047" />
+    <option name="height" value="956" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/wpi_ws" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.stereo_matching">
+    <configuration name="Build All" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="stereo_matching" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$USER_HOME$/Endoscope_Snapshot/tsukuba/scene1.row3.col2.ppm $USER_HOME$/Endoscope_Snapshot/tsukuba/scene1.row3.col3.ppm --blocksize=15 --max-disparity=16 --scale=1 -i=intrinsics_small.yml -e=extrinsics_small.yml -o=test02.png -p=test02.ply" PASS_PARENT_ENVS_2="true" PROJECT_NAME="stereo_matching" TARGET_NAME="stereo_matching" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="stereo_matching" RUN_TARGET_NAME="stereo_matching">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Build All" />
+      <item itemvalue="Application.stereo_matching" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e611533-3dcb-4a34-aacd-0496f1913916" name="Default Changelist" comment="" />
+      <created>1539375750126</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1539375750126</updated>
+      <workItem from="1539375751592" duration="4321000" />
+      <workItem from="1539629309238" duration="5898000" />
+      <workItem from="1539639697271" duration="603000" />
+      <workItem from="1539895459538" duration="218000" />
+      <workItem from="1539895995119" duration="2026000" />
+      <workItem from="1539972401805" duration="3244000" />
+      <workItem from="1540146135497" duration="8000" />
+      <workItem from="1540146161503" duration="1207000" />
+      <workItem from="1540155079767" duration="1377000" />
+      <workItem from="1540226729657" duration="248000" />
+      <workItem from="1540252306411" duration="1243000" />
+      <workItem from="1540256197096" duration="253000" />
+      <workItem from="1541720875950" duration="1287000" />
+      <workItem from="1541805456842" duration="2629000" />
+      <workItem from="1542130292029" duration="1364000" />
+      <workItem from="1542586049654" duration="658000" />
+      <workItem from="1543259852050" duration="4618000" />
+      <workItem from="1543342584396" duration="3654000" />
+      <workItem from="1543426270510" duration="662000" />
+      <workItem from="1543532633652" duration="5037000" />
+      <workItem from="1543604820768" duration="599000" />
+      <workItem from="1543610593847" duration="3038000" />
+      <workItem from="1544818162363" duration="598000" />
+      <workItem from="1544831733224" duration="89000" />
+      <workItem from="1544993798201" duration="710000" />
+      <workItem from="1547249776520" duration="584000" />
+      <workItem from="1547483299347" duration="599000" />
+      <workItem from="1547570117275" duration="3207000" />
+      <workItem from="1547771377659" duration="383000" />
+      <workItem from="1547828065789" duration="2109000" />
+      <workItem from="1548869741206" duration="599000" />
+      <workItem from="1550874364889" duration="2134000" />
+      <workItem from="1550876830291" duration="934000" />
+      <workItem from="1551122547689" duration="602000" />
+      <workItem from="1551223239872" duration="608000" />
+      <workItem from="1551373674929" duration="134000" />
+      <workItem from="1552328363614" duration="1233000" />
+      <workItem from="1552335360696" duration="1821000" />
+      <workItem from="1552502434519" duration="11000" />
+      <workItem from="1560800637119" duration="599000" />
+      <workItem from="1562788176391" duration="599000" />
+      <workItem from="1562963338859" duration="3751000" />
+      <workItem from="1565629798256" duration="773000" />
+      <workItem from="1565719792262" duration="2946000" />
+      <workItem from="1565888538523" duration="569000" />
+      <workItem from="1565902308358" duration="872000" />
+      <workItem from="1566235647128" duration="5065000" />
+      <workItem from="1566412422450" duration="2413000" />
+      <workItem from="1566495104584" duration="12271000" />
+      <workItem from="1566577297748" duration="3529000" />
+      <workItem from="1566832684920" duration="2707000" />
+      <workItem from="1566920903667" duration="1479000" />
+      <workItem from="1566933932695" duration="7000" />
+      <workItem from="1566934125814" duration="4000" />
+      <workItem from="1567115694221" duration="2105000" />
+      <workItem from="1567541731209" duration="38000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="100274000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1860" y="136" width="1047" height="956" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22877122" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32608697" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" order="8" weight="0.30193236" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3672">
+          <caret line="348" column="15" selection-start-line="348" selection-start-column="15" selection-end-line="348" selection-end-column="15" />
+          <folding>
+            <element signature="e#307#345#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
