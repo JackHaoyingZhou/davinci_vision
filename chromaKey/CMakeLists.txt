@@ -1,8 +1,10 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.0.0)
 project(chromaKey)
 
 find_package(OpenCV REQUIRED)
+find_package(catkin REQUIRED COMPONENTS roscpp)
 include_directories(${OpenCV_INCLUDE_DIRS})
+include_directories(${catkin_INCLUDE_DIRS})
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(chromaKey main.cpp)

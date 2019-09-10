@@ -1,3 +1,0 @@
-/home/aimlab3/CLionProjects/chromaKey/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aimlab3/CLionProjects/chromaKey/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aimlab3/CLionProjects/chromaKey/cmake-build-debug/CMakeFiles/chromaKey.dir
