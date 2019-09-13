@@ -8,5 +8,6 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/aimlab3/davinci_vision/chromaKey/build/devel:$CMAKE_PREFIX_PATH"
+export PWD="/home/aimlab3/davinci_vision/chromaKey/build"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/aimlab3/davinci_vision/chromaKey/build/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
 export ROS_PACKAGE_PATH="/home/aimlab3/davinci_vision/chromaKey:$ROS_PACKAGE_PATH"

@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/aimlab3/davinci_vision/image_subscribe_test/build/devel/setup.sh

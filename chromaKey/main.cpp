@@ -15,6 +15,13 @@
 #include <iostream>
 #include <stdio.h>
 
+#include <ros/ros.h>
+#include <image_transport/image_transport.h>
+#include <sensor_msgs/image_encodings.h>
+#include <cv_bridge/cv_bridge.h>
+
+#include <boost/program_options.hpp>
+
 using namespace std;
 using namespace cv;
 
@@ -34,6 +41,7 @@ const int blue_hight_max = 255;
 int blue_low, blue_high;
 double blue_l,blue_h;
 
+// define the slider tracker
 void on_trackbar(int, void*)
 {
     red_l = getTrackbarPos("Red Low","Image Result1");
@@ -46,19 +54,25 @@ void on_trackbar(int, void*)
     blue_h = getTrackbarPos("Blue High","Image Result1");
 }
 
-//void chromakey(const Mat under, const Mat over, Mat *dst, const Scalar& color);
 
+// image callback function
+void imageCallback(const sensor_msgs::ImageConstPtr& msg)
+{
+    try
+    {
+        imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
+        waitKey(30);
+    }
+    catch(cv_bridge::Exception& e)
+    {
+        ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+    }
+}
+
+// chromaKey function
 void chromakey(const Mat under, const Mat over, Mat *dst, const Scalar& color)
 {
     *dst = Mat(under.rows, under.cols, CV_8UC3);
-
-//    int underColor0 = under.at<Vec3b>(0,0)[0];
-//    int underColor1 = under.at<Vec3b>(0,0)[1];
-//    int underColor2 = under.at<Vec3b>(0,0)[2];
-//
-//    cout << underColor0 << endl;
-//    cout << underColor1 << endl;
-//    cout << underColor2 << endl;
 
     for(int y=0; y<under.rows;y++)
     {
@@ -108,7 +122,20 @@ void chromakey(const Mat under, const Mat over, Mat *dst, const Scalar& color)
     }
 }
 
-int main() {
+
+int main(int argc, char **argv) {
+
+    // initialize ROS node
+    ros::init(argc, argv, "image_listener");
+    ros::NodeHandle nh;
+    namedWindow("view");
+    startWindowThread();
+    image_transport::ImageTransport it(nh);
+    image_transport::Subscriber sub = it.subscribe("ambf/image_data/default_camera",1,imageCallback);
+    ros::spin();
+    destroyWindow("view");
+
+
     //VideoCapture cap("../plane.mp4"); // Plane video on top layer
     //VideoCapture cap(0); // endoscope feed on tope layer
     VideoCapture cap("../suj_test2.mp4");
@@ -129,16 +156,6 @@ int main() {
 
     createTrackbar("Blue Low", "Image Result1", 0, 255, on_trackbar);
     createTrackbar("Blue High", "Image Result1", 0, 255, on_trackbar);
-
-    // For blue screen background
-    // cvSetTrackbarPos("Red Low", "Image Result1", 134);
-    // cvSetTrackbarPos("Red High", "Image Result1", 220);
-    //
-    // cvSetTrackbarPos("Green Low", "Image Result1", 0);
-    // cvSetTrackbarPos("Green High", "Image Result1", 255);
-    //
-    // cvSetTrackbarPos("Blue Low", "Image Result1", 0);
-    // cvSetTrackbarPos("Blue High", "Image Result1", 121);
 
     // For green screen background
     cvSetTrackbarPos("Red Low", "Image Result1", 0);
