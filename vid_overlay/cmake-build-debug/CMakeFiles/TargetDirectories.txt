@@ -1,3 +1,0 @@
-/home/aimlab3/CLionProjects/vid_overlay/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aimlab3/CLionProjects/vid_overlay/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aimlab3/CLionProjects/vid_overlay/cmake-build-debug/CMakeFiles/vid_overlay.dir

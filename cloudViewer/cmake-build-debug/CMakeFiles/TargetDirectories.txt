@@ -1,3 +1,0 @@
-/home/aimlab3/CLionProjects/cloudViewer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/aimlab3/CLionProjects/cloudViewer/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/aimlab3/CLionProjects/cloudViewer/cmake-build-debug/CMakeFiles/cloudViewer.dir
