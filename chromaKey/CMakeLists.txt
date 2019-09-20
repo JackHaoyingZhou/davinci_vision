@@ -10,4 +10,4 @@ include_directories(${Boost_INCLUDE_DIRS})
 set(CMAKE_CXX_STANDARD 11)
 
 add_executable(chromaKey main.cpp)
-target_link_libraries(chromaKey ${OpenCV_LIBS})
+target_link_libraries(chromaKey ${OpenCV_LIBRARIES} ${catkin_LIBRARIES} ${Boost_LIBS})

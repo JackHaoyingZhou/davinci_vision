@@ -1,6 +1,6 @@
 //=========================================
 // This chroma key algorithm is based on the OpenCV chroma key tutorial from
-// https://www.academia.edu/8916198
+// https://www.academia.edu/8916198/Chroma_Key_Green_Screen_Background_-_OpenCV
 //
 // The code is modified to fit the application for da Vinci Surgical System
 // vision pipeline research and augmented reality implementation.
@@ -56,16 +56,14 @@ void on_trackbar(int, void*)
 
 
 // image callback function
-void imageCallback(const sensor_msgs::ImageConstPtr& msg)
-{
-    try
-    {
-        imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
-        waitKey(30);
-    }
-    catch(cv_bridge::Exception& e)
-    {
-        ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+void imageCallback(const sensor_msgs::ImageConstPtr& msg) {
+    try {
+        cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, "bgr8");
+        cv::imshow("view", cv_bridge::toCvShare(msg, "bgr8")->image);
+        cv::waitKey(30);
+    } catch (cv_bridge::Exception& e) {
+        ROS_ERROR("Could not convert from '%s' to 'bgr8'.",
+                msg->encoding.c_str());
     }
 }
 
@@ -85,22 +83,6 @@ void chromakey(const Mat under, const Mat over, Mat *dst, const Scalar& color)
             int underColor0 = under.at<Vec3b>(y,x)[0];
             int underColor1 = under.at<Vec3b>(y,x)[1];
             int underColor2 = under.at<Vec3b>(y,x)[2];
-
-//            cout << overColor0 << endl;
-//            cout << overColor1 << endl;
-//            cout << overColor2 << endl;
-//
-//            cout << underColor0 << endl;
-//            cout << underColor1 << endl;
-//            cout << underColor2 << endl;
-
-//            cout << over.at<Vec3b>(y,x) << endl;
-//            cout << red_l << endl;
-//            cout << red_h << endl;
-//            cout << green_l << endl;
-//            cout << green_h << endl;
-//            cout << blue_l << endl;
-//            cout << blue_h << endl;
 
             if(over.at<Vec3b>(y,x)[0] >= red_l && over.at<Vec3b>(y,x)[0] <= red_h && over.at<Vec3b>(y,x)[1] >= green_l && over.at<Vec3b>(y,x)[1] <= green_h && over.at<Vec3b>(y,x)[2] >= blue_l && over.at<Vec3b>(y,x)[2] <= blue_h)
             //if(overColor0 >= red_l && overColor0 <= red_h && overColor1 >= green_l && overColor1 <= green_h && overColor2 >= blue_l && overColor2 <= blue_h)
@@ -125,15 +107,28 @@ void chromakey(const Mat under, const Mat over, Mat *dst, const Scalar& color)
 
 int main(int argc, char **argv) {
 
+    // topic name argument
+//    std::string imageinput1 = "";
+//    std::string imageinput2 = "";
+
+//    imageinput1 = argv[1];
+//    imageinput2 = argv[2];
+
+//    if(imageinput1.empty() || imageinput2.empty())
+//    {
+//        printf("Please specify the image/video type...");
+//        return -1;
+//    }
+
     // initialize ROS node
     ros::init(argc, argv, "image_listener");
     ros::NodeHandle nh;
     namedWindow("view");
-    startWindowThread();
+//    startWindowThread();
     image_transport::ImageTransport it(nh);
     image_transport::Subscriber sub = it.subscribe("ambf/image_data/default_camera",1,imageCallback);
     ros::spin();
-    destroyWindow("view");
+//    destroyWindow("view");
 
 
     //VideoCapture cap("../plane.mp4"); // Plane video on top layer
@@ -168,7 +163,7 @@ int main(int argc, char **argv) {
     cvSetTrackbarPos("Blue High", "Image Result1", 121);
 
 
-    // The algorithm is terminated when the video is ended.
+    // The algorithm is terminated/crashed when the video is ended.
     // If a live feed is used, the algorithm is terminted on key command.
     while(key!=27){
         cap >> imgRBG;
@@ -181,6 +176,9 @@ int main(int argc, char **argv) {
     }
 
     cap.release();
+    cap1.release();
+
+    destroyWindow("view");
 
     return 0;
 }

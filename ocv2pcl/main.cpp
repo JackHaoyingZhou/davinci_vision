@@ -70,43 +70,6 @@ int readPointcloud(string filename){
     ydim.push_back(sumy);
     zdim.push_back(sumz);
 
-    //cout << count << endl;
-
-//    ifstream file2(filename2);
-//    if(!file2)
-//    {
-//        cerr << "cannot read data file" << endl;
-//    }
-//
-//    FileStorage cv_file(filename2, FileStorage::READ);
-//    cv_file["read_file"] >> file_matrix;
-//    cout << sizeof(file_matrix) << endl;
-//
-//    if (sizeof(file_matrix) == 0)
-//    {
-//        cerr << "not data read to Mat \n";
-//    }
-//
-//    //cout << file_matrix << endl;
-//    cv_file.release();
-//
-//    FileStorage fs;
-//    fs.open(filename2, FileStorage::READ);
-//    if (fs.isOpened())
-//    {
-//        cout << "XML file read \n";
-//    }
-//
-//    FileNode n = fs.root();
-//
-//    for (FileNodeIterator current = n.begin(); current != n.end(); current++){
-//        FileNode item = *current;
-//        Mat v;
-//        item["pose"] >> v;
-//        cout << v << endl;
-//    }
-
-
     return count;
 
 }

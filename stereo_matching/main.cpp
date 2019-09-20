@@ -95,6 +95,39 @@ static void saveXYZ(const char* filename, const Mat& mat)
     fclose(fp);
 }
 
+static void saveXYZPLY(const char* filename, const Mat& mat)
+{
+    std::vector<uchar> array;
+    if (mat.isContinuous())
+    {
+        array.assign((uchar*)mat.datastart, (uchar*)mat.dataend);
+    }
+    else
+    {
+        for(int i = 0; i < mat.rows; i++)
+        {
+            array.insert(array.end(), mat.ptr<uchar>(i), mat.ptr<uchar>(i)+mat.cols);
+        }
+    }
+
+
+//    pcl::PointCloud<pcl::PointXYZ>::Ptr point_cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
+//    for(int i = 0; i < mat.rows; i++)
+//    {
+//        pcl::PointXYZ pointPLY;
+//        pointPLY.x = mat.at<float>(0,i);
+//        pointPLY.y = mat.at<float>(1,i);
+//        pointPLY.z = mat.at<float>(2,i);
+
+//        point_cloud_ptr -> points.push_back(point_cloud_ptr);
+
+//    }
+//    point_cloud_ptr->width = (int)point_cloud_ptr->points.size();
+//    point_cloud_ptr->height = 1;
+
+//    pcl::PLYWriter::write(filename, point_cloud_ptr);
+}
+
 int main(int argc, char** argv)
 {
     std::string img1_filename = "";
@@ -348,26 +381,11 @@ int main(int argc, char** argv)
 
         if(!ply_cloud_filename.empty())
         {
-            cout << "\ncolumns:" << xyz.cols;
-            cout << "\nrows:" << xyz.rows;
-
-            pcl::PointCloud<pcl::PointXYZ>::Ptr point_cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
-            for(int i=0;i<xyz.cols;i++)
-            {
-                pcl::PointXYZ pointPCD;
-                pointPCD.x = xyz.at<float>(0,i);
-                pointPCD.y = xyz.at<float>(1,i);
-                pointPCD.z = xyz.at<float>(2,i);
-
-                point_cloud_ptr -> points.push_back(pointPCD);
-            }
-
-            point_cloud_ptr->width = (int)point_cloud_ptr->points.size();
-            point_cloud_ptr->height = 1;
-
-            //pcl::io::savePCDFileASCII(pcd_cloud_filename,point_cloud_ptr);
+            printf("\saving the point cloud in PLY format...");
+            cout << "\ncolumns: " << xyz.cols;
+            cout << "\nrows: " << xyz.rows;
+            saveXYZPLY(ply_cloud_filename.c_str(), xyz);
         }
-
         printf("\n");
     }
 
