@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.0.0)
 project(cv_stream)
 
 find_package(OpenCV REQUIRED)

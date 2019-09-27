@@ -22,7 +22,6 @@
 #include "opencv2/core/utility.hpp"
 
 
-#include <pcl/visualization/cloud_viewer.h>
 #include <pcl/io/pcd_io.h>
 #include <pcl/io/ply_io.h>
 #include <pcl/io/openni_grabber.h>
@@ -38,46 +37,38 @@ using namespace pcl;
 static void print_help()
 {
     printf("\nDemo stereo matching converting L and R images into disparity and point clouds\n");
+    printf("\nNOTE: point cloud file should be saved as .txt file and ply file as .ply file\n");
     printf("\nUsage: stereo_match <left_image> <right_image> [--algorithm=bm|sgbm|hh|sgbm3way] [--blocksize=<block_size>]\n"
            "[--max-disparity=<max_disparity>] [--scale=scale_factor>] [-i=<intrinsic_filename>] [-e=<extrinsic_filename>]\n"
            "[--no-display] [-o=<disparity_image>] [-p=<point_cloud_file>] [-ply=<ply_cloud_file>]\n");
 }
 
-void draw_cloud (const string &text, const PointCloud<PointXYZRGB>::Ptr &cloud){
-    visualization::CloudViewer viewer(text);
-    viewer.showCloud(cloud);
-    while (!viewer.wasStopped())
-    {
+//PointCloud<PointXYZRGB>::Ptr img_to_cloud(const Mat& image, const Mat &coords){
+//    PointCloud<PointXYZRGB>::Ptr cloud(new PointCloud<PointXYZRGB>());
 
-    }
-}
+//    for (int y=0; y<image.rows;y++)
+//    {
+//        for (int x=0;x<image.cols;x++)
+//        {
+//            PointXYZRGB point;
+//            point.x = coords.at<double>(0,y*image.cols+x);
+//            point.y = coords.at<double>(1,y*image.cols+x);
+//            point.z = coords.at<double>(2,y*image.cols+x);
 
-PointCloud<PointXYZRGB>::Ptr img_to_cloud(const Mat& image, const Mat &coords){
-    PointCloud<PointXYZRGB>::Ptr cloud(new PointCloud<PointXYZRGB>());
+//            Vec3b color = image.at<Vec3b>(Point(x,y));
+//            uint8_t r = (color[2]);
+//            uint8_t g = (color[1]);
+//            uint8_t b = (color[0]);
 
-    for (int y=0; y<image.rows;y++)
-    {
-        for (int x=0;x<image.cols;x++)
-        {
-            PointXYZRGB point;
-            point.x = coords.at<double>(0,y*image.cols+x);
-            point.y = coords.at<double>(1,y*image.cols+x);
-            point.z = coords.at<double>(2,y*image.cols+x);
+//            uint32_t rgb = (r << 16) | (g << 8) |b;
+//            point.rgb = *reinterpret_cast<float*>(&rgb);
 
-            Vec3b color = image.at<Vec3b>(Point(x,y));
-            uint8_t r = (color[2]);
-            uint8_t g = (color[1]);
-            uint8_t b = (color[0]);
+//            cloud->points.push_back(point);
+//        }
+//    }
 
-            uint32_t rgb = (r << 16) | (g << 8) |b;
-            point.rgb = *reinterpret_cast<float*>(&rgb);
-
-            cloud->points.push_back(point);
-        }
-    }
-
-    return cloud;
-}
+//    return cloud;
+//}
 
 static void saveXYZ(const char* filename, const Mat& mat)
 {
@@ -100,32 +91,18 @@ static void saveXYZPLY(const char* filename, const Mat& mat)
     std::vector<uchar> array;
     if (mat.isContinuous())
     {
-        array.assign((uchar*)mat.datastart, (uchar*)mat.dataend);
+        array.assign(mat.data, mat.data + mat.total());
     }
     else
     {
-        for(int i = 0; i < mat.rows; i++)
+        for(int i = 0; i < mat.rows; ++i)
         {
             array.insert(array.end(), mat.ptr<uchar>(i), mat.ptr<uchar>(i)+mat.cols);
         }
     }
 
 
-//    pcl::PointCloud<pcl::PointXYZ>::Ptr point_cloud_ptr(new pcl::PointCloud<pcl::PointXYZ>);
-//    for(int i = 0; i < mat.rows; i++)
-//    {
-//        pcl::PointXYZ pointPLY;
-//        pointPLY.x = mat.at<float>(0,i);
-//        pointPLY.y = mat.at<float>(1,i);
-//        pointPLY.z = mat.at<float>(2,i);
 
-//        point_cloud_ptr -> points.push_back(point_cloud_ptr);
-
-//    }
-//    point_cloud_ptr->width = (int)point_cloud_ptr->points.size();
-//    point_cloud_ptr->height = 1;
-
-//    pcl::PLYWriter::write(filename, point_cloud_ptr);
 }
 
 int main(int argc, char** argv)
@@ -381,7 +358,7 @@ int main(int argc, char** argv)
 
         if(!ply_cloud_filename.empty())
         {
-            printf("\saving the point cloud in PLY format...");
+            printf("\nsaving the point cloud in PLY format...");
             cout << "\ncolumns: " << xyz.cols;
             cout << "\nrows: " << xyz.rows;
             saveXYZPLY(ply_cloud_filename.c_str(), xyz);
