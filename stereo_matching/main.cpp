@@ -11,7 +11,7 @@
 /*
  *  NOTE: The output disparity should be saved as image format (jpg, png)
  *  whereas the point cloud should be
- *  saved as text format (ply, txt)
+ *  saved as text format (txt)
  *
  */
 
@@ -43,33 +43,6 @@ static void print_help()
            "[--no-display] [-o=<disparity_image>] [-p=<point_cloud_file>] [-ply=<ply_cloud_file>]\n");
 }
 
-//PointCloud<PointXYZRGB>::Ptr img_to_cloud(const Mat& image, const Mat &coords){
-//    PointCloud<PointXYZRGB>::Ptr cloud(new PointCloud<PointXYZRGB>());
-
-//    for (int y=0; y<image.rows;y++)
-//    {
-//        for (int x=0;x<image.cols;x++)
-//        {
-//            PointXYZRGB point;
-//            point.x = coords.at<double>(0,y*image.cols+x);
-//            point.y = coords.at<double>(1,y*image.cols+x);
-//            point.z = coords.at<double>(2,y*image.cols+x);
-
-//            Vec3b color = image.at<Vec3b>(Point(x,y));
-//            uint8_t r = (color[2]);
-//            uint8_t g = (color[1]);
-//            uint8_t b = (color[0]);
-
-//            uint32_t rgb = (r << 16) | (g << 8) |b;
-//            point.rgb = *reinterpret_cast<float*>(&rgb);
-
-//            cloud->points.push_back(point);
-//        }
-//    }
-
-//    return cloud;
-//}
-
 static void saveXYZ(const char* filename, const Mat& mat)
 {
     const double max_z = 1.0e4;
@@ -88,20 +61,31 @@ static void saveXYZ(const char* filename, const Mat& mat)
 
 static void saveXYZPLY(const char* filename, const Mat& mat)
 {
-    std::vector<uchar> array;
-    if (mat.isContinuous())
+    const double max_z = 1.0e4;
+    FILE* fp = fopen(filename, "wt");
+
+    int matSize = mat.rows*mat.cols;
+
+    fprintf(fp, "ply\n");
+    fprintf(fp, "format ascii 1.0\n");
+    fprintf(fp, "element vertex %i\n", matSize);
+    fprintf(fp, "property float32 x\n");
+    fprintf(fp, "property float32 y\n");
+    fprintf(fp, "property float32 z\n");
+    fprintf(fp, "element face 0\n");
+    fprintf(fp, "property list uint8 int32 vertex_indices\n");
+    fprintf(fp, "end_header\n");
+
+    for(int y = 0; y < mat.rows; y++)
     {
-        array.assign(mat.data, mat.data + mat.total());
-    }
-    else
-    {
-        for(int i = 0; i < mat.rows; ++i)
+        for(int x = 0; x < mat.cols; x++)
         {
-            array.insert(array.end(), mat.ptr<uchar>(i), mat.ptr<uchar>(i)+mat.cols);
+            Vec3f point = mat.at<Vec3f>(y, x);
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
         }
     }
-
-
+    fclose(fp);
 
 }
 
