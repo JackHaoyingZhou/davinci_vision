@@ -98,6 +98,7 @@ int main(int argc, char** argv)
     std::string disparity_filename = "";
     std::string point_cloud_filename = "";
     std::string ply_cloud_filename = "";
+    std::string output_file_name = "";
 
     enum { STEREO_BM=0, STEREO_SGBM=1, STEREO_HH=2, STEREO_VAR=3, STEREO_3WAY=4 };
     int alg = STEREO_SGBM;
@@ -108,7 +109,7 @@ int main(int argc, char** argv)
     Ptr<StereoBM> bm = StereoBM::create(16,9);
     Ptr<StereoSGBM> sgbm = StereoSGBM::create(0,16,3);
     cv::CommandLineParser parser(argc, argv,
-                                 "{@arg1||}{@arg2||}{help h||}{algorithm||}{max-disparity|0|}{blocksize|0|}{no-display||}{scale|1|}{i||}{e||}{o||}{p||}{ply||}");
+                                 "{@arg1||}{@arg2||}{help h||}{algorithm||}{max-disparity|0|}{blocksize|0|}{no-display||}{scale|1|}{i||}{e||}{o||}{p||}{ply||}{out||}");
     if(parser.has("help"))
     {
         print_help();
@@ -139,6 +140,8 @@ int main(int argc, char** argv)
         point_cloud_filename = parser.get<std::string>("p");
     if( parser.has("ply") )
         ply_cloud_filename = parser.get<std::string>("ply");
+    if( parser.has("out") )
+        output_file_name = parser.get<std::string>("out");
     if (!parser.check())
     {
         parser.printErrors();
@@ -177,11 +180,11 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    if( extrinsic_filename.empty() && !point_cloud_filename.empty() )
-    {
-        printf("Command-line parameter error: extrinsic and intrinsic parameters must be specified to compute the point cloud\n");
-        return -1;
-    }
+//    if( extrinsic_filename.empty() && !point_cloud_filename.empty() )
+//    {
+//        printf("Command-line parameter error: extrinsic and intrinsic parameters must be specified to compute the point cloud\n");
+//        return -1;
+//    }
 
     int color_mode = alg == STEREO_BM ? 0 : -1;
     Mat img1 = imread(img1_filename, color_mode);
@@ -324,32 +327,44 @@ int main(int argc, char** argv)
         printf("\n");
     }
 
-    if(!disparity_filename.empty())
-        imwrite(disparity_filename, disp8);
-        imwrite("Undistorted_Left.png",img1);
-        imwrite("Undistorted_Right.png",img2);
+    if(!output_file_name.empty())
+    {
+        std::string disparity_file_name = output_file_name + "_disparity.png";
+        imwrite(disparity_file_name, disp8);
+        std::string undist_left = output_file_name + "_undistorted_left.png";
+        std::string undist_right = output_file_name + "_undistorted_right.png";
+        imwrite(undist_left,img1);
+        imwrite(undist_right,img2);
+    }
 
-    if(!point_cloud_filename.empty())
+    if(!output_file_name.empty())
     {
         printf("storing the point cloud...");
         fflush(stdout);
         Mat xyz;
         reprojectImageTo3D(disp, xyz, Q, true);
+        std::string point_cloud_filename = output_file_name + "_pointcloud.txt";
         saveXYZ(point_cloud_filename.c_str(), xyz);
 
         FileStorage file("pointCloudOutput.xml", FileStorage::WRITE);
         file << "OutputPointcloud" << xyz;
 
-        if(!ply_cloud_filename.empty())
-        {
-            printf("\nsaving the point cloud in PLY format...");
-            cout << "\ncolumns: " << xyz.cols;
-            cout << "\nrows: " << xyz.rows;
-            saveXYZPLY(ply_cloud_filename.c_str(), xyz);
-        }
+//        if(!ply_cloud_filename.empty())
+//        {
+//            printf("\nsaving the point cloud in PLY format...");
+//            cout << "\ncolumns: " << xyz.cols;
+//            cout << "\nrows: " << xyz.rows;
+//            saveXYZPLY(ply_cloud_filename.c_str(), xyz);
+//        }
+
+        std::string ply_cloud_filename = output_file_name + "_pointcloud.ply";
+        printf("\nsaving the point cloud in PLY format...");
+        cout << "\ncolumns: " << xyz.cols;
+        cout << "\nrows: " << xyz.rows;
+        saveXYZPLY(ply_cloud_filename.c_str(), xyz);
+
         printf("\n");
     }
-
 
     return 0;
 }

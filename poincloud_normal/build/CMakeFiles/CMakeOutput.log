@@ -1,0 +1,87 @@
+The system is: Linux - sh: 0: getcwd() failed: No such file or directory
+4.15.0-64-generic - sh: 0: getcwd() failed: No such file or directory
+x86_64
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_bcfc9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bcfc9.dir/build.make CMakeFiles/cmTC_bcfc9.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_bcfc9.dir/testCCompiler.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTC_bcfc9.dir/testCCompiler.c.o   -c /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_bcfc9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bcfc9.dir/link.txt --verbose=1
+/usr/bin/gcc      CMakeFiles/cmTC_bcfc9.dir/testCCompiler.c.o  -o cmTC_bcfc9 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_f0406/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f0406.dir/build.make CMakeFiles/cmTC_f0406.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_f0406.dir/CMakeCCompilerABI.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTC_f0406.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_f0406
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0406.dir/link.txt --verbose=1
+/usr/bin/gcc      CMakeFiles/cmTC_f0406.dir/CMakeCCompilerABI.c.o  -o cmTC_f0406 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_349fb/fast"
+/usr/bin/make -f CMakeFiles/cmTC_349fb.dir/build.make CMakeFiles/cmTC_349fb.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_349fb.dir/testCXXCompiler.cxx.o
+/usr/bin/g++     -o CMakeFiles/cmTC_349fb.dir/testCXXCompiler.cxx.o -c /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_349fb
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_349fb.dir/link.txt --verbose=1
+/usr/bin/g++       CMakeFiles/cmTC_349fb.dir/testCXXCompiler.cxx.o  -o cmTC_349fb 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_4caa9/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4caa9.dir/build.make CMakeFiles/cmTC_4caa9.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_4caa9.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/g++     -o CMakeFiles/cmTC_4caa9.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_4caa9
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4caa9.dir/link.txt --verbose=1
+/usr/bin/g++       CMakeFiles/cmTC_4caa9.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4caa9 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_3a086/fast"
+/usr/bin/make -f CMakeFiles/cmTC_3a086.dir/build.make CMakeFiles/cmTC_3a086.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_3a086.dir/CheckIncludeFile.c.o
+/usr/bin/gcc    -o CMakeFiles/cmTC_3a086.dir/CheckIncludeFile.c.o   -c /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_3a086
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a086.dir/link.txt --verbose=1
+/usr/bin/gcc      CMakeFiles/cmTC_3a086.dir/CheckIncludeFile.c.o  -o cmTC_3a086 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_07bd3/fast"
+/usr/bin/make -f CMakeFiles/cmTC_07bd3.dir/build.make CMakeFiles/cmTC_07bd3.dir/build
+make[1]: Entering directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_07bd3.dir/CheckFunctionExists.c.o
+/usr/bin/gcc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_07bd3.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_07bd3
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07bd3.dir/link.txt --verbose=1
+/usr/bin/gcc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_07bd3.dir/CheckFunctionExists.c.o  -o cmTC_07bd3 -lpthread 
+make[1]: Leaving directory '/home/aimlab3/davinci_vision/poincloud_normal/build/CMakeFiles/CMakeTmp'
+
+
