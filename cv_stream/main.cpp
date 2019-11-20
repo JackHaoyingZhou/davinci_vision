@@ -13,6 +13,7 @@ int main(int argc, char* argv[]) {
     // the number of each set of image is added automatically until the program is reset
     // run: ./cv_stream full/path/to/save/location/ right_cam_name left_cam_name image_config_file_name
 
+
     VideoCapture cap1(0);
     VideoCapture cap2(1);
 

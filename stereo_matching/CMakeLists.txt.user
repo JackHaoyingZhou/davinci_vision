@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.5.2, 2019-10-29T18:09:21. -->
+<!-- Written by QtCreator 4.5.2, 2019-11-15T18:18:15. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -166,7 +166,7 @@
      <value type="int">14</value>
     </valuelist>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguation.Title">stereo_matching</value>
-    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments">pattern_left1.png pattern_right1.png --blocksize=3 --max-disparity=48 --scale=1 -i=intrinsics.yml -e=extrinsics.yml -o=new_pattern_disparity.png -out=new_pattern</value>
+    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments">wc_left1.png wc_right1.png --blocksize=3 --max-disparity=48 --scale=1 -i=intrinsics.yml -e=extrinsics.yml -o=new_pattern_disparity.png -out=new_pattern</value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory"></value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/home/aimlab3/davinci_vision/stereo_matching/build</value>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
