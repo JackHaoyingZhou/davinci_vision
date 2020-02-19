@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.0)
 project(ocv2pcl)
 find_package( PCL 1.8 REQUIRED )
 find_package( OpenCV REQUIRED )

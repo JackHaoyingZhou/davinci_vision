@@ -121,20 +121,21 @@ int main(int argc, char **argv) {
 //    }
 
     // initialize ROS node
-    ros::init(argc, argv, "image_listener");
-    ros::NodeHandle nh;
-    namedWindow("view");
-//    startWindowThread();
-    image_transport::ImageTransport it(nh);
-    image_transport::Subscriber sub = it.subscribe("ambf/image_data/default_camera",1,imageCallback);
-    ros::spin();
-//    destroyWindow("view");
+//    ros::init(argc, argv, "image_listener");
+//    ros::NodeHandle nh;
+//    namedWindow("view");
+////    startWindowThread();
+//    image_transport::ImageTransport it(nh);
+//    image_transport::Subscriber sub = it.subscribe("ambf/image_data/default_camera",1,imageCallback);
+////    ros::spin();
+////    destroyWindow("view");
 
 
     //VideoCapture cap("../plane.mp4"); // Plane video on top layer
     //VideoCapture cap(0); // endoscope feed on tope layer
     VideoCapture cap("../suj_test2.mp4");
-    VideoCapture cap1(0);
+    VideoCapture cap1(2);
+//    VideoCapture cap2();
 
     Mat imgRBG, imgRBG1, combined_images;
 
@@ -168,7 +169,7 @@ int main(int argc, char **argv) {
     while(key!=27){
         cap >> imgRBG;
         cap1 >> imgRBG1;
-        chromakey(background,imgRBG, &combined_images, Scalar(100,200,185));
+        chromakey(background,imgRBG1, &combined_images, Scalar(100,200,185));
 
         imshow("Image Result1", combined_images);
 

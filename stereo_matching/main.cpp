@@ -52,7 +52,7 @@ static void saveXYZ(const char* filename, const Mat& mat)
         for(int x = 0; x < mat.cols; x++)
         {
             Vec3f point = mat.at<Vec3f>(y, x);
-            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+//            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
             fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
         }
     }
@@ -69,11 +69,9 @@ static void saveXYZPLY(const char* filename, const Mat& mat)
     fprintf(fp, "ply\n");
     fprintf(fp, "format ascii 1.0\n");
     fprintf(fp, "element vertex %i\n", matSize);
-    fprintf(fp, "property float32 x\n");
-    fprintf(fp, "property float32 y\n");
-    fprintf(fp, "property float32 z\n");
-    fprintf(fp, "element face 0\n");
-    fprintf(fp, "property list uint8 int32 vertex_indices\n");
+    fprintf(fp, "property float x\n");
+    fprintf(fp, "property float y\n");
+    fprintf(fp, "property float z\n");
     fprintf(fp, "end_header\n");
 
     for(int y = 0; y < mat.rows; y++)
@@ -81,7 +79,7 @@ static void saveXYZPLY(const char* filename, const Mat& mat)
         for(int x = 0; x < mat.cols; x++)
         {
             Vec3f point = mat.at<Vec3f>(y, x);
-            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+//            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
             fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
         }
     }
@@ -262,32 +260,54 @@ int main(int argc, char** argv)
 
     numberOfDisparities = numberOfDisparities > 0 ? numberOfDisparities : ((img_size.width/8) + 15) & -16;
 
+//    bm->setROI1(roi1);
+//    bm->setROI2(roi2);
+//    bm->setPreFilterCap(31);
+//    bm->setBlockSize(SADWindowSize > 0 ? SADWindowSize : 9);
+//    bm->setMinDisparity(0);
+//    bm->setNumDisparities(numberOfDisparities);
+//    bm->setTextureThreshold(10);
+//    bm->setUniquenessRatio(15);
+//    bm->setSpeckleWindowSize(100);
+//    bm->setSpeckleRange(32);
+//    bm->setDisp12MaxDiff(1);
+
     bm->setROI1(roi1);
     bm->setROI2(roi2);
-    bm->setPreFilterCap(31);
+    bm->setPreFilterCap(1);
     bm->setBlockSize(SADWindowSize > 0 ? SADWindowSize : 9);
     bm->setMinDisparity(0);
     bm->setNumDisparities(numberOfDisparities);
-    bm->setTextureThreshold(10);
-    bm->setUniquenessRatio(15);
-    bm->setSpeckleWindowSize(100);
-    bm->setSpeckleRange(32);
-    bm->setDisp12MaxDiff(1);
+    bm->setTextureThreshold(0);
+    bm->setUniquenessRatio(1);
+    bm->setSpeckleWindowSize(0);
+    bm->setSpeckleRange(0);
+    bm->setDisp12MaxDiff(-1);
 
-    sgbm->setPreFilterCap(63);
+    sgbm->setPreFilterCap(1);
     int sgbmWinSize = SADWindowSize > 0 ? SADWindowSize : 3;
     sgbm->setBlockSize(sgbmWinSize);
 
     int cn = img1.channels();
 
-    sgbm->setP1(8*cn*sgbmWinSize*sgbmWinSize);
-    sgbm->setP2(32*cn*sgbmWinSize*sgbmWinSize);
+    sgbm->setP1(0);
+    sgbm->setP2(0);
     sgbm->setMinDisparity(0);
-    sgbm->setNumDisparities(numberOfDisparities);
-    sgbm->setUniquenessRatio(10);
-    sgbm->setSpeckleWindowSize(100);
-    sgbm->setSpeckleRange(32);
-    sgbm->setDisp12MaxDiff(1);
+    sgbm->setNumDisparities(64);
+    sgbm->setUniquenessRatio(1);
+    sgbm->setSpeckleWindowSize(0);
+    sgbm->setSpeckleRange(0);
+    sgbm->setDisp12MaxDiff(-1);
+
+//    sgbm->setP1(8*cn*sgbmWinSize*sgbmWinSize);
+//    sgbm->setP2(32*cn*sgbmWinSize*sgbmWinSize);
+//    sgbm->setMinDisparity(0);
+//    sgbm->setNumDisparities(numberOfDisparities);
+//    sgbm->setUniquenessRatio(1);
+//    sgbm->setSpeckleWindowSize(100);
+//    sgbm->setSpeckleRange(32);
+//    sgbm->setDisp12MaxDiff(1);
+
     if(alg==STEREO_HH)
         sgbm->setMode(StereoSGBM::MODE_HH);
     else if(alg==STEREO_SGBM)

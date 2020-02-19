@@ -56,7 +56,7 @@ static int print_help()
 
 
 static void
-StereoCalib(const vector<string>& imagelist, Size boardSize, float squareSize, bool displayCorners = false, bool useCalibrated=true, bool showRectified=true, string intriOutput="intrinsics.yml", string extriOutput="extrinsics.yml")
+StereoCalib(const vector<string>& imagelist, Size boardSize, float squareSize, bool displayCorners = false, bool useCalibrated=true, bool showRectified=true, string intriOutput="small_intrinsics.yml", string extriOutput="small_extrinsics.yml")
 {
     if( imagelist.size() % 2 != 0 )
     {

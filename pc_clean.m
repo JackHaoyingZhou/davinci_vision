@@ -17,15 +17,15 @@ zlabel('z')
 %% Load new stereo images
 % load stereo camera parameter
 load('webcamStereoParams2.mat')
-I1 = imread('my_photo-1.jpg');
-I2 = imread('my_photo-2.jpg');
+I1 = imread('my_photo-3.jpg');
+I2 = imread('my_photo-4.jpg');
 J1 = rgb2gray(I1);
 J2 = rgb2gray(I2);
 [G1,G2] = rectifyStereoImages(I1,I2,stereoParams2);
 J1rec = rgb2gray(G1);
 J2rec = rgb2gray(G2);
 %% disparity map example
-disparityRange = [0 80];
+disparityRange = [0 48];
 dispRange1 = num2str(disparityRange(1));
 dispRange2 = num2str(disparityRange(2));
 blocksize=7;
@@ -52,11 +52,11 @@ colorbar
 points3D = reconstructScene(disparityMapRec, stereoParams2);
 
 % Convert to meters and create a pointCloud object
-points3D = points3D ./ 1000;
+points3D = points3D ./ 100;
 ptCloud = pointCloud(points3D, 'Color', G1);
 
 % Create a streaming point cloud viewer
-player3D = pcplayer([-3, 3], [-3, 3], [0, 8], 'VerticalAxis', 'y', ...
+player3D = pcplayer([-10, 10], [-10, 10], [0, 12], 'VerticalAxis', 'y', ...
     'VerticalAxisDir', 'down');
 
 % Visualize the point cloud
