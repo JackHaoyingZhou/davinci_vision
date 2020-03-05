@@ -52,23 +52,85 @@ static void saveXYZ(const char* filename, const Mat& mat)
         for(int x = 0; x < mat.cols; x++)
         {
             Vec3f point = mat.at<Vec3f>(y, x);
-//            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
             fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
         }
     }
     fclose(fp);
 }
 
-static void saveXYZPLY(const char* filename, const Mat& mat)
+// PLY file writer with BGR
+static void saveXYZPLYBGR(const char* filename, const Mat& mat, const Mat& img)
 {
     const double max_z = 1.0e4;
+    Mat img_out;
+    cvtColor(img, img_out, COLOR_GRAY2BGR);
+    int pc_size;
+    pc_size = 0;
+
     FILE* fp = fopen(filename, "wt");
 
     int matSize = mat.rows*mat.cols;
 
+    for(int y = 0; y < mat.rows; y++)
+    {
+        for(int x = 0; x < mat.cols; x++)
+        {
+            Vec3f point = mat.at<Vec3f>(y, x);
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            pc_size++;
+        }
+    }
+
     fprintf(fp, "ply\n");
     fprintf(fp, "format ascii 1.0\n");
-    fprintf(fp, "element vertex %i\n", matSize);
+    fprintf(fp, "element vertex %i\n", pc_size);
+    fprintf(fp, "property float x\n");
+    fprintf(fp, "property float y\n");
+    fprintf(fp, "property float z\n");
+    fprintf(fp, "property uchar red\n");
+    fprintf(fp, "property uchar green\n");
+    fprintf(fp, "property uchar blue\n");
+    fprintf(fp, "end_header\n");
+
+    for(int y = 0; y < mat.rows; y++)
+    {
+        for(int x = 0; x < mat.cols; x++)
+        {
+            Vec3f point = mat.at<Vec3f>(y, x);
+            Vec3f pointBGR = img_out.at<Vec3f>(y, x);
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            fprintf(fp, "%f %f %f %f %f %f\n", point[0], point[1], point[2], pointBGR[0], pointBGR[1], pointBGR[3]);
+        }
+    }
+    fclose(fp);
+
+}
+
+// PLY file writer without BGR
+static void saveXYZPLY(const char* filename, const Mat& mat)
+{
+    const double max_z = 1.0e4;
+    int pc_size;
+    pc_size = 0;
+
+    FILE* fp = fopen(filename, "wt");
+
+    int matSize = mat.rows*mat.cols;
+
+    for(int y = 0; y < mat.rows; y++)
+    {
+        for(int x = 0; x < mat.cols; x++)
+        {
+            Vec3f point = mat.at<Vec3f>(y, x);
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            pc_size++;
+        }
+    }
+
+    fprintf(fp, "ply\n");
+    fprintf(fp, "format ascii 1.0\n");
+    fprintf(fp, "element vertex %i\n", pc_size);
     fprintf(fp, "property float x\n");
     fprintf(fp, "property float y\n");
     fprintf(fp, "property float z\n");
@@ -79,13 +141,14 @@ static void saveXYZPLY(const char* filename, const Mat& mat)
         for(int x = 0; x < mat.cols; x++)
         {
             Vec3f point = mat.at<Vec3f>(y, x);
-//            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
+            if(fabs(point[2] - max_z) < FLT_EPSILON || fabs(point[2]) > max_z) continue;
             fprintf(fp, "%f %f %f\n", point[0], point[1], point[2]);
         }
     }
     fclose(fp);
 
 }
+
 
 int main(int argc, char** argv)
 {
@@ -292,9 +355,9 @@ int main(int argc, char** argv)
 
     sgbm->setP1(0);
     sgbm->setP2(0);
-    sgbm->setMinDisparity(0);
-    sgbm->setNumDisparities(64);
-    sgbm->setUniquenessRatio(1);
+    sgbm->setMinDisparity(5);
+    sgbm->setNumDisparities(48);
+    sgbm->setUniquenessRatio(0);
     sgbm->setSpeckleWindowSize(0);
     sgbm->setSpeckleRange(0);
     sgbm->setDisp12MaxDiff(-1);
@@ -363,7 +426,7 @@ int main(int argc, char** argv)
         fflush(stdout);
         Mat xyz;
         reprojectImageTo3D(disp, xyz, Q, true);
-        std::string point_cloud_filename = output_file_name + "_pointcloud.txt";
+        std::string point_cloud_filename = output_file_name + "_pointcloud.xyz";
         saveXYZ(point_cloud_filename.c_str(), xyz);
 
         FileStorage file("pointCloudOutput.xml", FileStorage::WRITE);
@@ -381,7 +444,10 @@ int main(int argc, char** argv)
         printf("\nsaving the point cloud in PLY format...");
         cout << "\ncolumns: " << xyz.cols;
         cout << "\nrows: " << xyz.rows;
+
+        saveXYZPLYBGR("BGR_output.ply", xyz, img1);
         saveXYZPLY(ply_cloud_filename.c_str(), xyz);
+
 
         printf("\n");
     }
