@@ -132,15 +132,17 @@ int main(int argc, char **argv) {
 
 
     //VideoCapture cap("../plane.mp4"); // Plane video on top layer
-    //VideoCapture cap(0); // endoscope feed on tope layer
+//    VideoCapture cap(0); // endoscope feed on tope layer
     VideoCapture cap("../suj_test2.mp4");
-    VideoCapture cap1(2);
+    VideoCapture cap1(0);
 //    VideoCapture cap2();
 
     Mat imgRBG, imgRBG1, combined_images;
 
     int key = 0;
     Mat background = imread("../fjord.jpg");
+
+    int count = 0;
 
     namedWindow("Image Result1", 1);
 
@@ -172,7 +174,6 @@ int main(int argc, char **argv) {
         chromakey(background,imgRBG1, &combined_images, Scalar(100,200,185));
 
         imshow("Image Result1", combined_images);
-
         key = waitKey(30);
     }
 

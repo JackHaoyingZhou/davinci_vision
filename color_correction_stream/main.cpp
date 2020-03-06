@@ -44,14 +44,14 @@ void do1ChnHist(const Mat_<uchar> &img, const Mat_<uchar> &mask, Mat_<double> &h
 }
 
 // match histograms of 'src' to that of 'dst', according to both masks
-void histMatchRGB(Mat &src, const Mat &src_mask, const Mat &dst, const Mat &dst_mask)
+Mat histMatchRGB(Mat &src, const Mat &src_mask, const Mat &dst, const Mat &dst_mask)
 {
-#ifdef BTM_DEBUG
-    namedWindow("original source", CV_WINDOW_AUTOSIZE);
-    imshow("original source", src);
-    namedWindow("original query", CV_WINDOW_AUTOSIZE);
-    imshow("original query", dst);
-#endif
+//#ifdef BTM_DEBUG
+//    namedWindow("original source", CV_WINDOW_AUTOSIZE);
+//    imshow("original source", src);
+//    namedWindow("original query", CV_WINDOW_AUTOSIZE);
+//    imshow("original query", dst);
+//#endif
 
     vector<Mat_<uchar>> chns, chns1;
     split(src, chns);
@@ -92,15 +92,16 @@ void histMatchRGB(Mat &src, const Mat &src_mask, const Mat &dst, const Mat &dst_
     Mat res;
     merge(chns, res);
 
-#ifdef BTM_DEBUG
-    namedWindow("matched", CV_WINDOW_AUTOSIZE);
-    imshow("matched", res);
+//#ifdef BTM_DEBUG
+//    namedWindow("matched", CV_WINDOW_AUTOSIZE);
+//    imshow("matched", res);
 
-    waitKey(0);
-#endif
+//    waitKey(0);
+//#endif
 
     res.copyTo(src);
 //    imwrite(outName, res);
+    return res;
 
 }
 
@@ -108,19 +109,51 @@ void histMatchRGB(Mat &src, const Mat &src_mask, const Mat &dst, const Mat &dst_
 int main(int argc, char **argv)
 {
 
+
+    VideoCapture cap0(0);
+    VideoCapture cap1(1);
+
     int key = 0;
+    int count = 0;
+
+    Mat vidcap0, vidcap1;
 
     Mat src = imread("rgbtest_right_0.png");
     Mat dst = imread("rgbtest_left_0.png");
     Mat mask = Mat(src.size(), CV_8U, Scalar(255));
+    Mat matched;
     String outputName = "rgbtest_left_0";
 
+
     while(key!=27){
-        histMatchRGB(dst, mask, src, mask);
-        if(key=27)
-        {
-            break;
-        }
+
+        cap0 >> vidcap0;
+        cap1 >> vidcap1;
+
+//        count++;
+//        cout << count << endl;
+
+        namedWindow("original source", CV_WINDOW_AUTOSIZE);
+        imshow("original source", vidcap0);
+        namedWindow("original query", CV_WINDOW_AUTOSIZE);
+        imshow("original query", vidcap1);
+
+//        matched = histMatchRGB(dst, mask, src, mask);
+//        namedWindow("matched", CV_WINDOW_AUTOSIZE);
+//        imshow("matched", matched);
+
+        key = waitKey(30);
+
+//        if(key=27)
+//        {
+//            break;
+//        }
     }
+
+    cap0.release();
+    cap1.release();
+
+    destroyAllWindows();
+
     return 0;
 }
