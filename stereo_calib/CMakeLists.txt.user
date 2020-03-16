@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.5.2, 2020-02-07T18:18:09. -->
+<!-- Written by QtCreator 4.5.2, 2020-03-06T18:48:35. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -163,7 +163,7 @@
      <value type="int">14</value>
     </valuelist>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguation.Title">stereo_calib</value>
-    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments">-w=6 -h=7 -s=0.0393701 small_chess_config.xml</value>
+    <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.Arguments">-w=6 -h=7 -s=0.0393701 chess_06032020.xml intrinsics_050320.yml extrinsics_050320.yml</value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory"></value>
     <value type="QString" key="CMakeProjectManager.CMakeRunConfiguration.UserWorkingDirectory.default">/home/aimlab3/davinci_vision/stereo_calib/build</value>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
